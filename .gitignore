@@ -1,0 +1,9 @@
+#pids
+*.pid
+*.seed
+
+#logs
+*.log
+
+#builds
+build/*
