@@ -22,6 +22,44 @@ along with CMSarn.  If not, see <http://www.gnu.org/licenses/>.
 
 /* jshint curly: true, eqeqeq: true, immed: true, indent: 4, latedef: true, noarg: true, nonbsp: true, nonew: true, undef: true, unused: vars, strict: true, asi: true, eqnull: true, browser: true, devel: true, jquery: true */
 
+function buildWebsite(json) {
+	"use strict";
+
+	//var HTML = "";
+
+	$("title").text(json.title);
+
+	$("#dynamicStyle").text(json.css);
+
+	if(typeof json.header === "string") {
+		$("#header").html(json.header);
+	}
+
+	if(typeof json.footer === "string") {
+		$("#footer").html(json.footer);
+	}
+
+	if(typeof json.content === "string") {
+		$("#content").html(json.content);
+	} else {
+
+	}
+}
+
 (function() {
 	"use strict";
+	$(window).on("hashchange", function() {
+		var toFetch;
+		if(window.location.hash.indexOf("#/") === 0) {
+			toFetch = "/fetch/"+window.location.hash.substr(2);
+		} else if(window.location.hash === "") {
+			toFetch = "/fetch/index";
+		} else {
+			return;
+		}
+		$.get(toFetch, function(data, textStatus, jqXHR) {
+			buildWebsite(JSON.parse(data));
+			//$("#content").html(data);
+		});
+	}).trigger("hashchange");
 }());
