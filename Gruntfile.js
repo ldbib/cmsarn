@@ -39,6 +39,7 @@ module.exports = function(grunt) {
 					{expand: true, cwd: "src/", src: "server.js", dest: "build/", filter: "isFile"},
 					{expand: true, cwd: "src/public/html/", src: "**", dest: "build/public/html/"},
 					{expand: true, cwd: "src/public/css/", src: "*", dest: "build/public/css/", filter: "isFile"},
+					{expand: true, cwd: "src/public/js/", src: "*", dest: "build/public/js/", filter: "isFile"},
 					{expand: true, cwd: "src/public/fonts/", src: "**", dest: "build/public/fonts/"}
 				]
 			}
